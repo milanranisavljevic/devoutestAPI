@@ -73,4 +73,24 @@ public class TestReqRes extends BaseConfig {
             .body("name", equalTo(user.getName()));
     }
 
+    @Test(description = "Tests that user is successfully updated")
+    public void verifyUserIsUpdated() {
+        logger.info("Execute test: " + new Object(){}.getClass().getEnclosingMethod().getName());
+
+        PutPostUser updateUser = new PutPostUser();
+        updateUser.setName("morpheus");
+        updateUser.setJob("zion resident");
+
+        given()
+            .contentType("application/json; charset=utf-8")
+            .body(updateUser)
+        .when()
+            .put("/users/2")
+        .then()
+            .log().all()
+            .assertThat()
+            .statusCode(HttpStatus.SC_OK)
+            .body("job", equalTo(updateUser.getJob()));
+    }
+
 }
