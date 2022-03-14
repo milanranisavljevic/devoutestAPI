@@ -1,0 +1,25 @@
+{
+    "users": [
+        {
+            "firstName": "morpheus",
+            "job": "leader"
+        },
+        {
+            "name": "milan",
+            "job": "drmr"
+        },
+        {
+            "name": "john",
+            "job": "doe"
+        },
+        {
+            "name": "richard",
+            "job": "roe"
+        },
+        {
+            "name": "devoutest",
+            "job": "dev"
+        }
+    ]
+}
+
