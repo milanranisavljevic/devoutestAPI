@@ -93,4 +93,18 @@ public class TestReqRes extends BaseConfig {
             .body("job", equalTo(updateUser.getJob()));
     }
 
+    @Test(description = "Tests that the Delete request yields a 204 response status")
+    public void verifyDeleteUserResponseStatus() {
+        logger.info("Execute test: " + new Object(){}.getClass().getEnclosingMethod().getName());
+
+        given()
+            .contentType("application/json; charset=utf-8")
+        .when()
+            .delete("/users/2")
+        .then()
+            .log().all()
+            .assertThat()
+            .statusCode(HttpStatus.SC_NO_CONTENT);
+    }
+
 }
