@@ -57,4 +57,20 @@ public class TestReqRes extends BaseConfig {
 
     }
 
+    @Test(description = "Tests that user is successfully created", dataProvider = "usersUnderTest")
+    public void verifyUserIsCreated(PutPostUser user) {
+        logger.info("Execute test: " + new Object(){}.getClass().getEnclosingMethod().getName());
+
+        given()
+            .contentType("application/json; charset=utf-8")
+            .body(user)
+        .when()
+            .post(Endpoints.USERS)
+        .then()
+            .log().all()
+            .assertThat()
+            .statusCode(HttpStatus.SC_CREATED)
+            .body("name", equalTo(user.getName()));
+    }
+
 }
