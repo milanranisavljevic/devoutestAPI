@@ -28,6 +28,15 @@ public class TestReqRes extends BaseConfig {
 
     private static Logger logger = Logger.getLogger(TestReqRes.class);
 
+    static final List<PutPostUser> usersUnderTest = from(new File(Path.RESOURCES_TEST + "fixtures.json")).getList("users", PutPostUser.class);
+
+    @DataProvider
+    public Iterator<Object[]> usersUnderTest() {
+        List<Object[]> users = new ArrayList<>();
+        usersUnderTest.forEach(user -> users.add(new Object[]{user}));
+        return users.iterator();
+    }
+
     @BeforeClass
     public void setBaseUri() {
         RestAssured.baseURI = "https://reqres.in/api";
